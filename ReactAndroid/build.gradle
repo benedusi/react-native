@@ -17,7 +17,8 @@ import java.nio.file.Paths
 import de.undercouch.gradle.tasks.download.Download
 import org.apache.tools.ant.taskdefs.condition.Os
 import org.apache.tools.ant.filters.ReplaceTokens
-
+def ANDROID_NDK_VERSION = System.getenv('ANDROID_NDK_VERSION')
+def ANDROID_NDK_PATH = System.getenv('ANDROID_NDK_PATH')
 def AAR_OUTPUT_URL = "file://${projectDir}/../android"
 // We download various C++ open-source dependencies into downloads.
 // We then copy both the downloaded code and our custom makefiles and headers into third-party-ndk.
