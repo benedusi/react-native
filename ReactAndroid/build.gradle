@@ -43,6 +43,9 @@ def boostPath = dependenciesPath ?: System.getenv("REACT_NATIVE_BOOST_PATH")
 // Setup build type for NDK, supported values: {debug, release}
 def nativeBuildType = System.getenv("NATIVE_BUILD_TYPE") ?: "release"
 
+def ANDROID_NDK_VERSION = System.getenv('ANDROID_NDK_VERSION')
+def ANDROID_NDK_PATH = System.getenv('ANDROID_NDK_PATH')
+
 task createNativeDepsDirectories {
     downloadsDir.mkdirs()
     thirdPartyNdkDir.mkdirs()

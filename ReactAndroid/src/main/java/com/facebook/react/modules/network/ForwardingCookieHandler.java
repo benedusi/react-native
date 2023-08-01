@@ -150,8 +150,6 @@ public class ForwardingCookieHandler extends CookieHandler {
           return null;
         }
       }
-    }
-
     return mCookieManager;
   }
 
