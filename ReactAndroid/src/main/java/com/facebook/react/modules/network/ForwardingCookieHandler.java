@@ -129,29 +129,22 @@ public class ForwardingCookieHandler extends CookieHandler {
    * Instantiating CookieManager will load the Chromium task taking a 100ish ms so we do it lazily
    * to make sure it's done on a background thread as needed.
    */
-  private @Nullable CookieManager getCookieManager() {
+
+
+private @Nullable CookieManager getCookieManager() {
     if (mCookieManager == null) {
-      possiblyWorkaroundSyncManager(mContext);
-      try {
-        mCookieManager = CookieManager.getInstance();
-      } catch (IllegalArgumentException ex) {
-        // https://bugs.chromium.org/p/chromium/issues/detail?id=559720
-        return null;
-      } catch (Exception exception) {
-        String message = exception.getMessage();
-        // We cannot catch MissingWebViewPackageException as it is in a private / system API
-        // class. This validates the exception's message to ensure we are only handling this
-        // specific exception.
-        // https://android.googlesource.com/platform/frameworks/base/+/master/core/java/android/webkit/WebViewFactory.java#348
-        if (message != null
-            && exception.getClass().getCanonicalName().contains("MissingWebViewPackageException")) {
-        return null;
-        } else {
-          return null;
+        possiblyWorkaroundSyncManager(mContext);
+        try {
+            mCookieManager = CookieManager.getInstance();
+        } catch (IllegalArgumentException ex) {
+            return null;
+        } catch (Exception exception) {
+            return null;
         }
-      }
+    }
     return mCookieManager;
-  }
+}
+
 
   private static void possiblyWorkaroundSyncManager(Context context) {}
 
